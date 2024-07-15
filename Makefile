@@ -2,18 +2,22 @@ NAME = philo
 
 CC = cc
 
+THREADS = -pthread
+
 FLAGS = -Wall -Wextra -Werror
 
 OUT = -o $(NAME)
 
-SOURCES = src/main.c
+SOURCES = src/main.c \
+	  src/validate_input.c \
+	  src/utils.c
 
 OBJECTS = ${SOURCES:.c=.o}
 
 RM = rm -rf
 
 .c.o:
-	@$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(THREAD) $(FLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJECTS) progress
 	@$(CC) $(FLAGS) $(OBJECTS) $(OUT)

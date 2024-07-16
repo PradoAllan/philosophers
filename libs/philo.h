@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/15 15:49:55 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/16 09:47:08 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,22 @@
 # include <string.h>
 # include <sys/time.h>
 
+typedef struct		s_philo
+{
+	int		id;
+	int		time_to_die;
+	int		time_to_sleep;
+	int		time_to_eat;
+	int		n_eat;
+	struct	s_philo	*next;
+	struct	s_philo	*prev;
+}			t_philo;
+
 typedef struct	s_main
 {
 	int	*arr;
+	int	arr_size;
+	t_philo	*head;
 }		t_main;
 
 enum	e_errors

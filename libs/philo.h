@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/23 08:38:30 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/23 09:44:35 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_main
 	int	*forks;
 	int	q_forks;
 	t_philo	*head;
+	t_philo	*tail;
 }		t_main;
 
 enum	e_errors
@@ -57,6 +58,10 @@ void		print_philos(t_main *bag);
 void		populate_philo(t_philo **node);
 t_philo		*create_philo(int id);
 void		create_list(t_main *bag);
+
+/*----- Free functions -----*/
+void	free_philo(t_philo *philo);
+void	free_list(t_main *bag);
 
 /*----- Utils -----*/
 long	ft_atol(const char *nptr);

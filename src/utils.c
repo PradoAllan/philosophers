@@ -6,11 +6,31 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/15 15:50:19 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/23 10:03:08 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
+
+void	start_forks(t_main *bag)
+{
+	int	forks;
+	int	i;
+
+	if (!bag)
+		return ;
+	forks = 1;
+	i = 0;
+	bag->forks = malloc(sizeof(int) * (bag->arr[0]));
+	if (!bag->forks)
+		return ;
+	while (forks <= bag->arr[0])
+	{
+		bag->forks[i] = forks;
+		forks++;
+		i++;
+	}
+}
 
 long	ft_atol(const char *nptr)
 {

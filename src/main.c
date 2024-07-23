@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/23 09:45:23 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/23 10:03:15 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ int	main(int ac, char **av)
 	if (!validate_input(ac, av, &bag))
 		return (0);
 	printf("OK!\n");
-//	start_forks(&bag); criar o array com os garfos.
+	start_forks(&bag);
 	create_list(&bag);
 //	print_philos(&bag);
 	free_list(&bag);
 	free(bag.arr);
+	free(bag.forks);
 	return (1);
 }

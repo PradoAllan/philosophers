@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/23 08:43:17 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/23 09:45:23 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	populate_bag(t_main *bag, int ac)
 	bag->forks = NULL;
 	bag->q_forks = 0;
 	bag->head = NULL;
+	bag->tail = NULL;
 }
 
 int	main(int ac, char **av)
@@ -38,7 +39,8 @@ int	main(int ac, char **av)
 	printf("OK!\n");
 //	start_forks(&bag); criar o array com os garfos.
 	create_list(&bag);
+//	print_philos(&bag);
+	free_list(&bag);
 	free(bag.arr);
-//	free na lista linkada.
 	return (1);
 }

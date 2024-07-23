@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/23 08:41:08 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/23 09:10:20 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 // 1 argumento => numero de filosofos e de garfos.
@@ -90,5 +90,5 @@ void	create_list(t_main *bag)
 	}
 	new->next = bag->head;
 	bag->head->prev = new;
-	print_philos(bag);
+	bag->tail = new;
 }

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/23 09:44:35 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/23 10:02:40 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void	free_list(t_main *bag);
 long	ft_atol(const char *nptr);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_puterror(int error);
+void	start_forks(t_main *bag);
 
 #endif

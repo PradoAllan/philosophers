@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/23 10:02:40 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/25 17:48:27 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,56 @@
 # include <string.h>
 # include <sys/time.h>
 
+# define MSG_FORK "has taken a fork"
+# define MSG_EAT "is eating"
+# define MSG_SLEEP "is sleeping"
+# define MSG_THINK "is thinking"
+# define MSG_DIE "died"
+
+typedef struct		s_arbitrator
+{
+	int		philo_id;
+	int		*ref_forks;
+	pthread_mutex_t	mutex;
+}			t_arbitrator;
+
 typedef struct		s_philo
 {
+	pthread_t	tid;
 	int		id;
-	int		time_to_die;
-	int		time_to_sleep;
-	int		time_to_eat;
+	long		time_die;
+	long		time_sleeped;
+	long		time_eated;
 	int		n_eat;
 	struct	s_philo	*next;
 	struct	s_philo	*prev;
 }			t_philo;
 
-typedef struct	s_main
+typedef struct		s_main
 {
-	int	*arr;
-	int	arr_size;
-	int	*forks;
-	int	q_forks;
-	t_philo	*head;
-	t_philo	*tail;
-}		t_main;
+	int		*arr;
+	int		arr_size;
+	int		*forks;
+	int		q_forks;
+	pthread_mutex_t	mutex;
+	t_philo		*head;
+	t_philo		*tail;
+}			t_main;
 
 enum	e_errors
 {
 	NO_PARAMS = -1,
 	BAD_PARAMS = -2,
 	WRONG_PARAMS = -3
+};
+
+enum	e_state
+{
+	FORK,
+	EAT,
+	SLEEP,
+	THINK,
+	DIE
 };
 
 /*----- Validations -----*/

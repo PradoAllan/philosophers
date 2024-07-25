@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/23 10:03:08 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/25 09:57:25 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	start_forks(t_main *bag)
 		return ;
 	forks = 1;
 	i = 0;
+	bag->q_forks = bag->arr[0];
 	bag->forks = malloc(sizeof(int) * (bag->arr[0]));
 	if (!bag->forks)
 		return ;
@@ -82,4 +83,6 @@ void	ft_puterror(int error)
 	}
 	else if (error == WRONG_PARAMS)
 		ft_putstr_fd("Philo: Must be a positive integer number.\n", 2);
+	else
+		ft_putstr_fd("Philo: Error.\n", 2);
 }

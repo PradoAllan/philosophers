@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:41:58 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/15 15:46:33 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/25 09:42:52 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	validate_input(int ac, char **av, t_main *bag)
 	while (av[++i])
 	{
 		nbr = ft_atol(av[i]);
-		if (nbr > 2147483647 || nbr < -2147483648)
+		if (nbr > 2147483647 || nbr < -2147483648 || nbr == 0)
 			return (free(bag->arr), ft_puterror(WRONG_PARAMS), 0);
 		else
 			bag->arr[i - 1] = nbr;

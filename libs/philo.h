@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/25 17:48:27 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/26 11:59:55 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ typedef struct		s_philo
 {
 	pthread_t	tid;
 	int		id;
+	int		*left_fork;
+	int		*right_fork;
+	int		state;
 	long		time_die;
 	long		time_sleeped;
 	long		time_eated;
@@ -65,11 +68,10 @@ enum	e_errors
 
 enum	e_state
 {
-	FORK,
-	EAT,
-	SLEEP,
-	THINK,
-	DIE
+	EAT = 1,
+	SLEEP = 2,
+	THINK = 3,
+	DIE = 4
 };
 
 /*----- Validations -----*/

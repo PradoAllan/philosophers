@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/25 09:25:17 by aprado           ###   ########.fr       */
+/*   Updated: 2024/07/26 12:00:19 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 // 1 argumento => numero de filosofos e de garfos.
@@ -40,6 +40,9 @@ void	populate_philo(t_philo **node)
 	(*node)->time_sleeped = 0;
 	(*node)->time_eated = 0;
 	(*node)->n_eat = 0;
+	(*node)->state = 0;
+	(*node)->left_fork = NULL;
+	(*node)->right_fork = NULL;
 	(*node)->next = NULL;
 	(*node)->prev = NULL;
 }

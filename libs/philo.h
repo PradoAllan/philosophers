@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/26 11:59:55 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/02 13:33:38 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct		s_philo
 	int		*left_fork;
 	int		*right_fork;
 	int		state;
-	long		time_die;
-	long		time_sleeped;
-	long		time_eated;
+	int		time_to_die;
+	int		time_to_sleep;
+	int		time_to_eat;
 	int		n_eat;
 	struct	s_philo	*next;
 	struct	s_philo	*prev;
@@ -82,7 +82,7 @@ int	check_param(char *s);
 
 void		print_philos(t_main *bag);
 void		populate_philo(t_philo **node);
-t_philo		*create_philo(int id);
+t_philo		*create_philo(int id, int *arr);
 void		create_list(t_main *bag);
 
 /*----- Free functions -----*/

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/26 12:00:19 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/02 13:32:27 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 // 1 argumento => numero de filosofos e de garfos.
@@ -36,9 +36,9 @@ void	print_philos(t_main *bag)
 void	populate_philo(t_philo **node)
 {
 	(*node)->id = 0;
-	(*node)->time_die = 0;
-	(*node)->time_sleeped = 0;
-	(*node)->time_eated = 0;
+	(*node)->time_to_die = 0;
+	(*node)->time_to_sleep = 0;
+	(*node)->time_to_eat = 0;
 	(*node)->n_eat = 0;
 	(*node)->state = 0;
 	(*node)->left_fork = NULL;
@@ -47,7 +47,7 @@ void	populate_philo(t_philo **node)
 	(*node)->prev = NULL;
 }
 
-t_philo	*create_philo(int id)
+t_philo	*create_philo(int id, int *arr)
 {
 	t_philo	*new;
 
@@ -55,6 +55,9 @@ t_philo	*create_philo(int id)
 	if (!new)
 		return (NULL);
 	populate_philo(&new);
+	new->time_to_die = arr[1];
+	new->time_to_eat = arr[2];
+	new->time_to_sleep = arr[3];
 	new->id = id;
 	return (new);
 }
@@ -71,7 +74,7 @@ void	create_list(t_main *bag)
 	printf("teste %i\n", bag->arr[0]);
 	while (i <= bag->arr[0])
 	{
-		new = create_philo(i);
+		new = create_philo(i, bag->arr);
 		if (i == 1)
 			bag->head = new;
 		else

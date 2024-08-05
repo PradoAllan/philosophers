@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/02 13:33:38 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:01:13 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define MSG_THINK "is thinking"
 # define MSG_DIE "died"
 
+typedef struct		s_main	t_main;
+
 typedef struct		s_arbitrator
 {
 	int		philo_id;
@@ -33,31 +35,39 @@ typedef struct		s_arbitrator
 	pthread_mutex_t	mutex;
 }			t_arbitrator;
 
+typedef struct		s_fork
+{
+	pthread_mutex_t	fork;
+	int		fork_id;
+}			t_fork;
+
 typedef struct		s_philo
 {
 	pthread_t	tid;
 	int		id;
-	int		*left_fork;
-	int		*right_fork;
 	int		state;
 	int		time_to_die;
 	int		time_to_sleep;
 	int		time_to_eat;
-	int		n_eat;
+	int		meals_counter;
+	long		last_meal_time;
+	t_fork		*left_fork;
+	t_fork		*right_fork;
+	t_main		*bag;
 	struct	s_philo	*next;
 	struct	s_philo	*prev;
 }			t_philo;
 
-typedef struct		s_main
+struct			s_main
 {
 	int		*arr;
 	int		arr_size;
-	int		*forks;
-	int		q_forks;
-	pthread_mutex_t	mutex;
+	int		end_dinner;
+	long		start_timestamp;
+	t_fork		*forks;
 	t_philo		*head;
 	t_philo		*tail;
-}			t_main;
+};
 
 enum	e_errors
 {
@@ -82,7 +92,7 @@ int	check_param(char *s);
 
 void		print_philos(t_main *bag);
 void		populate_philo(t_philo **node);
-t_philo		*create_philo(int id, int *arr);
+t_philo		*create_philo(int id, int *arr, t_main *bag);
 void		create_list(t_main *bag);
 
 /*----- Free functions -----*/

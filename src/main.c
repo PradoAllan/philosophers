@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/02 13:40:00 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/05 11:26:16 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,10 @@ void	*first_func(void *arg)
 	while (i < bag->arr[0])
 	{
 		pthread_create(&threads[i], NULL, philo_state, (void *)aux);
-		pthread_join(threads[i], NULL);
+
+		pthread_detach(threads[i]);
+
+		//pthread_join(threads[i], NULL);
 		// O join aqui faz com que cada thread seja
 		// inicializada e finaliza sua execucao. isto e, antes de criar uma segunda
 		// thread, a primeira precisa finalizar sua execucao.
@@ -120,6 +123,8 @@ void	*first_func(void *arg)
 		i++;
 	}
 	*/
+	usleep(10 * 1000000);
+	free(threads);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/25 09:57:25 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:20:25 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void	start_forks(t_main *bag)
 		return ;
 	forks = 1;
 	i = 0;
-	bag->q_forks = bag->arr[0];
-	bag->forks = malloc(sizeof(int) * (bag->arr[0]));
+	bag->forks = malloc(sizeof(t_fork) * (bag->arr[0]));
 	if (!bag->forks)
 		return ;
-	while (forks <= bag->arr[0])
+	while (i < bag->arr[0])
 	{
-		bag->forks[i] = forks;
+		bag->forks[i].fork_id = forks;
 		forks++;
 		i++;
 	}

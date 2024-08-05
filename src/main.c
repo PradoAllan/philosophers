@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/05 11:26:16 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:19:03 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	*first_func(void *arg)
 	{
 		pthread_create(&threads[i], NULL, philo_state, (void *)aux);
 
-		pthread_detach(threads[i]);
+		//pthread_detach(threads[i]);
 
 		//pthread_join(threads[i], NULL);
 		// O join aqui faz com que cada thread seja
@@ -115,15 +115,13 @@ void	*first_func(void *arg)
 		i++;
 		aux = aux->next;
 	}
-	/*
 	i = 0;
 	while (i < bag->arr[0])
 	{
 		pthread_join(threads[i], NULL);
 		i++;
 	}
-	*/
-	usleep(10 * 1000000);
+	//usleep(10 * 1000000);
 	free(threads);
 	return (NULL);
 }
@@ -133,7 +131,8 @@ static void	populate_bag(t_main *bag, int ac)
 	bag->arr = NULL;
 	bag->arr_size = ac - 1;
 	bag->forks = NULL;
-	bag->q_forks = 0;
+	bag->end_dinner = 0;
+	bag->start_timestamp = 0;
 	bag->head = NULL;
 	bag->tail = NULL;
 }

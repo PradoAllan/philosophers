@@ -6,11 +6,22 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/08 10:48:39 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/08 18:12:42 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
+
+long	get_time(void)
+{
+	struct timeval	time;
+	long		ms;
+
+	gettimeofday(&time, NULL);
+	ms = time.tv_sec * 1000;
+	ms += time.tv_usec / 1000;
+	return (ms);
+}
 
 void	finish_forks(t_main *bag)
 {
@@ -97,4 +108,6 @@ void	ft_puterror(int error)
 		ft_putstr_fd("Philo: Must be a positive integer number.\n", 2);
 	else
 		ft_putstr_fd("Philo: Error.\n", 2);
+	ft_putstr_fd("Philo: Try inputs like this: ", 2);
+	ft_putstr_fd("./philo 80 200 300 400 5\n", 2);
 }

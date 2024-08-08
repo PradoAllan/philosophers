@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/08 11:30:46 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/08 18:12:41 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ static void	populate_bag(t_main *bag, int ac)
 	bag->forks = NULL;
 	bag->end_dinner = 0;
 	bag->start_timestamp = 0;
+	bag->all_ready = 0;
 	bag->head = NULL;
 	bag->tail = NULL;
 }
@@ -155,7 +156,10 @@ int	main(int ac, char **av)
 	create_list(&bag);
 //	assigning forks to philos
 	assign_forks(&bag);
-	print_philos(&bag); // just for debug
+	//print_philos(&bag); // just for debug
+	
+//	starting dinner
+	start_dinner(&bag);
 
 	finish_forks(&bag);
 	free_list(&bag);

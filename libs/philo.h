@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/08 11:28:01 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/08 17:54:49 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ struct			s_main
 	int		*arr;
 	int		arr_size;
 	int		end_dinner;
+	int		all_ready;
 	long		start_timestamp;
+	pthread_mutex_t	ready_mutex;
 	t_fork		*forks;
 	t_philo		*head;
 	t_philo		*tail;
@@ -89,12 +91,14 @@ int	validate_input(int ac, char **av, t_main *bag);
 int	check_param(char *s);
 
 /*----- Circle Linked list -----*/
-
 void		print_philos(t_main *bag);
 void		populate_philo(t_philo **node);
 t_philo		*create_philo(int id, int *arr, t_main *bag);
 void		create_list(t_main *bag);
 void		assign_forks(t_main *bag);
+
+/*----- Dinner funcs -----*/
+void	start_dinner(t_main *bag);
 
 /*----- Free functions -----*/
 void	free_philo(t_philo *philo);
@@ -106,5 +110,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_puterror(int error);
 void	start_forks(t_main *bag); // mutex init
 void	finish_forks(t_main *bag); // mutex destroy
+long	get_time(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/05 19:19:03 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/08 11:30:46 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 //time.tv_sec -> seconds since the unix epoch
 //time.tv_usec -> microseconds
+//
+//NAO APAGAR ESSAS FUNCOES DE TIME STAMP
 long	get_time(void)
 {
 	struct timeval	time;
@@ -31,7 +33,7 @@ long	get_time(void)
 	ms += time.tv_usec / 1000;
 	return (ms);
 }
-
+//NAO APAGAR ESSAS FUNCOES DE TIME STAMP
 void	*test_timestamp(void *arg)
 {
 	t_main		*bag;
@@ -126,6 +128,10 @@ void	*first_func(void *arg)
 	return (NULL);
 }
 
+//-----------------------------------------------------------------
+//------------------- A partir daqui nao excluir nada -------------
+//-----------------------------------------------------------------
+
 static void	populate_bag(t_main *bag, int ac)
 {
 	bag->arr = NULL;
@@ -147,7 +153,16 @@ int	main(int ac, char **av)
 	printf("OK!\n");
 	start_forks(&bag);
 	create_list(&bag);
+//	assigning forks to philos
+	assign_forks(&bag);
+	print_philos(&bag); // just for debug
 
+	finish_forks(&bag);
+	free_list(&bag);
+	free(bag.arr);
+	free(bag.forks);
+
+	/*
 //	IMPLEMENTING THE ARBITRATOR THREAD. THIS ONE WILL BE AN WHILE (TRUE) LOOP.
 //	CHECKING ALL PHILOS AND DEALING WITH THEIR STATUS. (eat, sleep and think).
 	pthread_t	arbitrator;
@@ -155,7 +170,6 @@ int	main(int ac, char **av)
 	pthread_create(&arbitrator, NULL, first_func, (void *)&bag);
 	pthread_join(arbitrator, NULL);
 
-/*
 //	testing some things with mutexes and threads
 //	this is not done nor right
 	if (!start_philos(&bag))
@@ -166,11 +180,8 @@ int	main(int ac, char **av)
 		return (ft_puterror(0), 0);
 	}
 //	start_routine(&bag);
-*/
 
 //	print_philos(&bag);
-	free_list(&bag);
-	free(bag.arr);
-	free(bag.forks);
+	*/
 	return (1);
 }

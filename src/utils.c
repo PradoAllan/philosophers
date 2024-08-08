@@ -6,11 +6,23 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/05 19:20:25 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/08 10:48:39 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
+
+void	finish_forks(t_main *bag)
+{
+	int	i;
+
+	i = 0;
+	while (i < bag->arr[0])
+	{
+		pthread_mutex_destroy(&bag->forks[i].fork);
+		i++;
+	}
+}
 
 void	start_forks(t_main *bag)
 {
@@ -26,6 +38,7 @@ void	start_forks(t_main *bag)
 		return ;
 	while (i < bag->arr[0])
 	{
+		pthread_mutex_init(&bag->forks[i].fork, NULL);
 		bag->forks[i].fork_id = forks;
 		forks++;
 		i++;

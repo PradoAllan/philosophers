@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/05 18:57:56 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/08 11:28:38 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 // 1 argumento => numero de filosofos e de garfos.
@@ -25,10 +25,16 @@ void	print_philos(t_main *bag)
 	while (aux)
 	{
 		printf("----- Philos -----\n");
+		/*
+		 * para ver se a lista duplamente encadeada circular deu certo
 		printf("actual: %p\n", aux);
 		printf("prev: %p\n", aux->prev);
 		printf("next: %p\n", aux->next);
 		printf("value: %i\n", aux->id);
+		*/
+		printf("philo id: %i\n", aux->id);
+		printf("left fork: %i\n", aux->left_fork->fork_id);
+		printf("right fork: %i\n", aux->right_fork->fork_id);
 		aux = aux->next;
 	}
 }
@@ -100,4 +106,24 @@ void	create_list(t_main *bag)
 	new->next = bag->head;
 	bag->head->prev = new;
 	bag->tail = new;
+}
+
+void	assign_forks(t_main *bag)
+{
+	int		i;
+	int		qtd;
+	t_philo	*aux;
+	t_fork	*arr;
+
+	i = 0;
+	qtd = bag->arr[0];
+	aux = bag->head;
+	arr = bag->forks;
+	while (i < qtd)
+	{
+		aux->right_fork = &arr[aux->id - 1];
+		aux->left_fork = &arr[aux->id % qtd];
+		aux = aux->next;
+		i++;
+	}
 }

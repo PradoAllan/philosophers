@@ -12,7 +12,8 @@ SOURCES = src/main.c \
 	  src/validate_input.c \
 	  src/utils.c \
 	  src/linked_list.c \
-	  src/free_functions.c
+	  src/free_functions.c \
+	  src/simulation.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/08 17:54:49 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/12 15:54:17 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_arbitrator
 typedef struct		s_fork
 {
 	pthread_mutex_t	fork;
+	int		fork_status;
 	int		fork_id;
 }			t_fork;
 

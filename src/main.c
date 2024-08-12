@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/09 15:32:01 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/12 16:39:19 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*test_timestamp(void *arg)
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-
+/*
 void	print_state(int state, int philo_id, long start)
 {
 	long	time;
@@ -130,7 +130,7 @@ void	*first_func(void *arg)
 	free(threads);
 	return (NULL);
 }
-
+*/
 //-----------------------------------------------------------------
 //------------------- A partir daqui nao excluir nada -------------
 //-----------------------------------------------------------------
@@ -158,7 +158,7 @@ int	main(int ac, char **av)
 	start_forks(&bag);
 	create_list(&bag);
 //	assigning forks to philos
-	assign_forks(&bag);
+	assign_forks(&bag); // DONT NEED THIS FUNC. Philos only get forks when need to eat.
 	//print_philos(&bag); // just for debug
 	
 //	starting dinner

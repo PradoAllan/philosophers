@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/08 11:28:38 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/12 15:58:07 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 // 1 argumento => numero de filosofos e de garfos.
@@ -108,6 +108,8 @@ void	create_list(t_main *bag)
 	bag->tail = new;
 }
 
+// Func to get the forks is called when the philo needs to eat...
+// ONLY THEN!!!
 void	assign_forks(t_main *bag)
 {
 	int		i;

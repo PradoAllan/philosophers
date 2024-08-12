@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/08 18:12:42 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/12 15:55:24 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	start_forks(t_main *bag)
 	{
 		pthread_mutex_init(&bag->forks[i].fork, NULL);
 		bag->forks[i].fork_id = forks;
+		bag->forks[i].fork_status = 1;
 		forks++;
 		i++;
 	}

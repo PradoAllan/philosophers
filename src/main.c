@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/12 16:39:19 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/13 18:22:36 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,42 @@ void	*first_func(void *arg)
 //------------------- A partir daqui nao excluir nada -------------
 //-----------------------------------------------------------------
 
+void	init_mutexes(t_main *bag)
+{
+	t_philo	*aux;
+	int		i;
+
+	aux = bag->head;
+	i = 0;
+	pthread_mutex_init(&bag->end_mutex, NULL);
+	while (i < bag->arr[0])
+	{
+		pthread_mutex_init(&aux->state_mtx, NULL);
+		pthread_mutex_init(&aux->meal_mtx, NULL);
+		pthread_mutex_init(&aux->last_meal_mtx, NULL);
+		i++;
+		aux = aux->next;
+	}
+}
+
+void	destroy_mutexes(t_main *bag)
+{
+	t_philo	*aux;
+	int		i;
+
+	aux = bag->head;
+	i = 0;
+	pthread_mutex_destroy(&bag->end_mutex);
+	while (i < bag->arr[0])
+	{
+		pthread_mutex_destroy(&aux->state_mtx);
+		pthread_mutex_destroy(&aux->meal_mtx);
+		pthread_mutex_destroy(&aux->last_meal_mtx);
+		i++;
+		aux = aux->next;
+	}
+}
+
 static void	populate_bag(t_main *bag, int ac)
 {
 	bag->arr = NULL;
@@ -158,13 +194,21 @@ int	main(int ac, char **av)
 	start_forks(&bag);
 	create_list(&bag);
 //	assigning forks to philos
-	assign_forks(&bag); // DONT NEED THIS FUNC. Philos only get forks when need to eat.
+	//assign_forks(&bag); // DONT NEED THIS FUNC. Philos only get forks when need to eat.
 	//print_philos(&bag); // just for debug
-	
-//	starting dinner
+
+	//------------------------------
+	//--- starting the miutexes-----
+	//------------------------------
+	init_mutexes(&bag);
+
+	//------------------------------
+	//------- starting dinner ------
+	//------------------------------
 	start_dinner(&bag);
 
 	finish_forks(&bag);
+	destroy_mutexes(&bag);
 	free_list(&bag);
 	free(bag.arr);
 	free(bag.forks);

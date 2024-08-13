@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/12 17:23:13 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/13 18:24:44 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,137 @@
 // 4 argumento => tempo para dormir (em ms)
 // 5 argumento => numero de vezes que um filosofo deve comer (opcional)
 
+void	set_philo_state(t_philo *philo, int new_state)
+{
+	pthread_mutex_lock(&philo->state_mtx);
+	philo->state = new_state;
+	pthread_mutex_unlock(&philo->state_mtx);
+}
+
+int	is_philo_dead(t_philo *philo, int time)
+{
+	long	current;
+	int		value;
+
+	current = get_time();
+	pthread_mutex_lock(&philo->last_meal_mtx);
+	if ((current - philo->last_meal_time + 10) >= time)
+		value = 1;
+	else
+		value = 0;
+	pthread_mutex_unlock(&philo->last_meal_mtx);
+	if (value)
+		set_philo_state(philo, DIE);
+	return (value);
+}
+
+int	is_philo_full(t_philo *philo, int n_eat)
+{
+	int	value;
+
+	if (n_eat == -1)
+		return (0);
+	pthread_mutex_lock(&philo->meal_mtx);
+	if (philo->meals_counter < n_eat)
+		value = 0;
+	else
+		value = 1;
+	pthread_mutex_unlock(&philo->meal_mtx);
+	return (value);
+}
+
+void	stop_dinner(t_main *bag)
+{
+	pthread_mutex_lock(&bag->end_mutex);
+	bag->end_dinner = 1;
+	pthread_mutex_unlock(&bag->end_mutex);
+}
+
+int	all_philos_full(t_main *bag, int n_eat)
+{
+	t_philo	*aux;
+	int		i;
+	int		counter;
+
+	i = 0;
+	counter = 0;
+	aux = bag->head;
+	while (i < bag->arr[0])
+	{
+		if (is_philo_full(aux, n_eat))
+			counter++;
+		i++;
+		aux = aux->next;
+	}
+	if (counter == i)
+	{
+		stop_dinner(bag);
+		return (1);
+	}
+	return (0);
+}
+
+void	*arbitrator_routine(void *arg)
+{
+	t_main	*bag;
+	t_philo	*aux;
+	int		n_eat;
+
+	//2- criar a rotina do arbitrator
+	//	verificar se ele morreu
+	//	verificar se ele ja comeu Nx necessario
+	bag = (t_main *)arg;
+	aux = bag->head;
+	if (bag->arr_size == 5)
+		n_eat = bag->arr[4];
+	else
+		n_eat = -1;
+	while (42)
+	{
+		if (is_philo_dead(aux, bag->arr[1]))
+		{
+			// mudar variavel end_dinner...
+			stop_dinner(bag);
+			break ;
+		}
+		if (all_philos_full(bag, n_eat))
+			break ;
+		//checkar se TODOS terminaram de comer.
+		//	se sim: mudar a end dinner.
+		//	se nao: nao muda nada.
+		aux = aux->next;
+	}
+	return (NULL);
+}
+
+int	check_if_can_start(t_main *bag)
+{
+	if (!bag)
+		return (0);
+	if (bag->arr[0] == 1)
+		return (ft_puterror(-10), 0);
+	else if (bag->arr_size == 5 && bag->arr[4] == 0)
+		return (ft_puterror(-10), 0);
+	return (1);
+}
+
+void	start_dinner(t_main *bag)
+{
+	pthread_t	arb;
+
+	if (!check_if_can_start(bag))
+		return ;
+	pthread_create(&arb, NULL, arbitrator_routine, (void *)bag);
+	pthread_join(arb, NULL);
+	//1- criar o arbitrator DONE
+	//2- criar a rotina do arbitrator DONE
+	//	verificar se ele morreu DONE
+	//	verificar se ele ja comeu Nx necessario DONE
+	//3- criar os philos
+	//4- criar a rotina dos philos
+}
+
+/*
 int	check_end_dinner(t_main *bag)
 {
 	pthread_mutex_t	mutex;
@@ -192,3 +323,4 @@ void	start_dinner(t_main *bag)
 	}
 	pthread_join(arb, NULL);
 }
+*/

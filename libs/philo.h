@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/12 15:54:17 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/13 17:38:29 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ typedef struct		s_philo
 	pthread_t	tid;
 	int		id;
 	int		state;
-	int		time_to_die;
-	int		time_to_sleep;
-	int		time_to_eat;
+	long		time_to_die;
+	long		time_to_sleep;
+	long		time_to_eat;
 	int		meals_counter;
 	long		last_meal_time;
 	t_fork		*left_fork;
 	t_fork		*right_fork;
 	t_main		*bag;
+	pthread_mutex_t	state_mtx;
+	pthread_mutex_t	meal_mtx;
+	pthread_mutex_t	last_meal_mtx;
 	struct	s_philo	*next;
 	struct	s_philo	*prev;
 }			t_philo;
@@ -66,7 +69,7 @@ struct			s_main
 	int		end_dinner;
 	int		all_ready;
 	long		start_timestamp;
-	pthread_mutex_t	ready_mutex;
+	pthread_mutex_t	end_mutex;
 	t_fork		*forks;
 	t_philo		*head;
 	t_philo		*tail;

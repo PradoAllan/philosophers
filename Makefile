@@ -14,7 +14,8 @@ SOURCES = src/main.c \
 	  src/linked_list.c \
 	  src/free_functions.c \
 	  src/simulation.c \
-	  src/arbitrator_utils.c
+	  src/arbitrator_utils.c \
+	  src/time_funcs.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

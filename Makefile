@@ -13,7 +13,8 @@ SOURCES = src/main.c \
 	  src/utils.c \
 	  src/linked_list.c \
 	  src/free_functions.c \
-	  src/simulation.c
+	  src/simulation.c \
+	  src/arbitrator_utils.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

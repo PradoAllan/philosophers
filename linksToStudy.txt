@@ -12,6 +12,8 @@
 4-) Video sobre Race Conditions:
 	https://www.youtube.com/watch?v=FY9livorrJI&list=PLfqABt5AS4FmErobw8YyTwXDUE5nPH5lH
 
+5-) Medium que me auxiliou na rotina dos philos e do arbitrator:
+	https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
 #####################################################################
 
 -> Estudar sobre processos e threads!

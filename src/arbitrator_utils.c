@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:28:36 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:29:41 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:47:19 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,23 @@ int	all_philos_full(t_main *bag, int n_eat)
 {
 	t_philo	*aux;
 	int		i;
-	int		counter;
 
 	i = 0;
-	counter = 0;
 	aux = bag->head;
 	while (i < bag->arr[0])
 	{
-		if (is_philo_full(aux, n_eat))
-			counter++;
+		if (!is_philo_full(aux, n_eat))
+			return (0);
 		i++;
 		aux = aux->next;
 	}
+	return (1);
+	/*
 	if (counter == i)
 	{
 		stop_dinner(bag);
 		return (1);
 	}
 	return (0);
+	*/
 }

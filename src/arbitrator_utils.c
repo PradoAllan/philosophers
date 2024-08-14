@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:28:36 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:47:19 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:48:18 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,4 @@ int	all_philos_full(t_main *bag, int n_eat)
 		aux = aux->next;
 	}
 	return (1);
-	/*
-	if (counter == i)
-	{
-		stop_dinner(bag);
-		return (1);
-	}
-	return (0);
-	*/
 }

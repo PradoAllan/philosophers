@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:34:13 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/14 18:16:31 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,61 @@ static void	*arbitrator_routine(void *arg)
 	return (NULL);
 }
 
+int	check_dinner_status(t_main *bag)
+{
+	int	value;
+
+	pthread_mutex_lock(&bag->end_mutex);
+	if (bag->end_dinner == 1)
+		value = 1;
+	else
+		value = 0;
+	pthread_mutex_unlock(&bag->end_mutex);
+	return (value);
+}
+
+int	get_philo_state(t_philo *philo)
+{
+	int	value;
+
+	pthread_mutex_lock(&philo->state_mtx);
+	value = philo->state;
+	pthread_mutex_unlock(&philo->state_mtx);
+	return (value);
+}
+
+int	loop_helper(t_philo *philo)
+{
+	if (!check_dinner_status(philo->bag) || get_philo_state(philo) == DIE)
+		return (0);
+	return (1);
+}
+
+static void	*philo_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo*)arg;
+	while (loop_helper(philo))
+	{
+		ft_usleep(800);
+		printf("hello from thread: %i\n", philo->id);
+		//eat()
+		//sleep()
+		//think()
+	}
+	//3- criar os philos TO DO
+	//	criar as threads
+	//4- criar a rotina dos philos TO DO
+	//	while true
+	//		se end_dinner == 1 || philo->state == DIE
+	//			encerra o loop...
+	//
+	//
+	//		
+	return (NULL);
+}
+
 static int	check_if_can_start(t_main *bag)
 {
 	if (!bag)
@@ -66,17 +121,43 @@ static int	check_if_can_start(t_main *bag)
 void	start_dinner(t_main *bag)
 {
 	pthread_t	arb;
+	t_philo		*aux;
+	int			i;
 
 	if (!check_if_can_start(bag))
 		return ;
+	aux = bag->head;
+	i = 0;
 	pthread_create(&arb, NULL, arbitrator_routine, (void *)bag);
+
+	while (i < bag->arr[0])
+	{
+		pthread_create(&aux->tid, NULL, philo_routine, (void *)aux);
+		aux = aux->next;
+		i++;
+	}
+
 	pthread_join(arb, NULL);
+
+	i = 0;
+	while (i < bag->arr[0])
+	{
+		pthread_join(aux->tid, NULL);
+		aux = aux->next;
+		i++;
+	}
+
 	//1- criar o arbitrator *DONE*
 	//2- criar a rotina do arbitrator *DONE*
 	//	verificar se ele morreu *DONE*
 	//	verificar se ele ja comeu Nx necessario *DONE*
 	//3- criar os philos TO DO
+	//	criar as threads
 	//4- criar a rotina dos philos TO DO
+	//	while true
+	//		se end_dinner == 1 || philo->state == DIE
+	//			encerra o loop...
+	//		
 }
 
 /*

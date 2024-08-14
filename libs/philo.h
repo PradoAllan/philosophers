@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/13 17:38:29 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:32:14 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,16 @@ void		assign_forks(t_main *bag);
 
 /*----- Dinner funcs -----*/
 void	start_dinner(t_main *bag);
+
+/*----- Arbitrator -----*/
+int	is_philo_dead(t_philo *philo, int time);
+int	is_philo_full(t_philo *philo, int n_eat);
+int	all_philos_full(t_main *bag, int n_eat);
+void	set_philo_state(t_philo *philo, int new_state);
+void	stop_dinner(t_main *bag);
+
+/*----- Philo -----*/
+
 
 /*----- Free functions -----*/
 void	free_philo(t_philo *philo);

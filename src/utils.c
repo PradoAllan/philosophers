@@ -6,22 +6,11 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/12 15:55:24 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:38:26 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
-
-long	get_time(void)
-{
-	struct timeval	time;
-	long		ms;
-
-	gettimeofday(&time, NULL);
-	ms = time.tv_sec * 1000;
-	ms += time.tv_usec / 1000;
-	return (ms);
-}
 
 void	finish_forks(t_main *bag)
 {

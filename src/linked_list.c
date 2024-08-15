@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:50:21 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/15 19:42:48 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 // 1 argumento => numero de filosofos e de garfos.
@@ -45,6 +45,7 @@ void	populate_philo(t_philo **node)
 	(*node)->time_to_die = 0;
 	(*node)->time_to_sleep = 0;
 	(*node)->time_to_eat = 0;
+	(*node)->times_eaten = -1;
 	(*node)->state = THINK;
 	(*node)->meals_counter = 0;
 	(*node)->last_meal_time = 0;
@@ -66,6 +67,8 @@ t_philo	*create_philo(int id, int *arr, t_main *bag)
 	new->time_to_die = arr[1];
 	new->time_to_eat = arr[2];
 	new->time_to_sleep = arr[3];
+	if (bag->arr_size == 5)
+		new->times_eaten = arr[4];
 	new->bag = bag;
 	new->id = id;
 	return (new);

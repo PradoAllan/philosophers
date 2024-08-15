@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/15 18:30:52 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/15 19:41:08 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_philo
 	long		time_to_die;
 	long		time_to_sleep;
 	long		time_to_eat;
+	int		times_eaten;
 	int		meals_counter;
 	long		last_meal_time;
 	t_fork		*left_fork;

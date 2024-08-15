@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/15 15:03:20 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/15 18:30:52 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct		s_arbitrator
 typedef struct		s_fork
 {
 	pthread_mutex_t	fork;
-	int		fork_status;
+	int		fork_status; // 1=livre 0=ocupado
 	int		fork_id;
 }			t_fork;
 
@@ -88,7 +88,8 @@ enum	e_state
 	EAT = 1,
 	SLEEP = 2,
 	THINK = 3,
-	DIE = 4
+	FORK = 4,
+	DIE = 5
 };
 
 /*----- Validations -----*/

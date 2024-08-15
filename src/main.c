@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/13 18:22:36 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/15 19:05:04 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ int	main(int ac, char **av)
 	start_forks(&bag);
 	create_list(&bag);
 //	assigning forks to philos
-	//assign_forks(&bag); // DONT NEED THIS FUNC. Philos only get forks when need to eat.
+	assign_forks(&bag); // DONT NEED THIS FUNC. Philos only get forks when need to eat.
 	//print_philos(&bag); // just for debug
 
 	//------------------------------

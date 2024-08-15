@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:42:44 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/15 15:03:20 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_philo
 	pthread_mutex_t	state_mtx;
 	pthread_mutex_t	meal_mtx;
 	pthread_mutex_t	last_meal_mtx;
+	pthread_mutex_t	print_mtx;
 	struct	s_philo	*next;
 	struct	s_philo	*prev;
 }			t_philo;
@@ -108,10 +109,11 @@ void	start_dinner(t_main *bag);
 int	is_philo_dead(t_philo *philo, int time);
 int	is_philo_full(t_philo *philo, int n_eat);
 int	all_philos_full(t_main *bag, int n_eat);
-void	set_philo_state(t_philo *philo, int new_state);
 void	stop_dinner(t_main *bag);
 
 /*----- Philo -----*/
+void	set_philo_state(t_philo *philo, int new_state);
+int	get_philo_state(t_philo *philo);
 
 
 /*----- Free functions -----*/
@@ -126,5 +128,6 @@ void	ft_puterror(int error);
 void	start_forks(t_main *bag); // mutex init
 void	finish_forks(t_main *bag); // mutex destroy
 void	ft_usleep(long ms);
+void	print_philo_status(t_philo *philo);
 
 #endif

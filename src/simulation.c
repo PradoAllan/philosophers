@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 18:16:31 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/15 15:04:59 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 static void	*arbitrator_routine(void *arg)
 {
+	return (NULL);
 	t_main	*bag;
 	t_philo	*aux;
 	int		n_eat;
@@ -52,6 +53,27 @@ static void	*arbitrator_routine(void *arg)
 	return (NULL);
 }
 
+void	print_philo_status(t_philo *philo)
+{
+	long	current;
+	int		id;
+	int		state;
+
+	pthread_mutex_lock(&philo->print_mtx);
+	current = get_time() - philo->bag->start_timestamp;
+	id = philo->id;
+	state = get_philo_state(philo);
+	if (state == EAT)
+		printf("%ld Philosopher %i %s\n", current, id, MSG_EAT);
+	else if (state == SLEEP)
+		printf("%ld Philosopher %i %s\n", current, id, MSG_SLEEP);
+	else if (state == THINK)
+		printf("%ld Philosopher %i %s\n", current, id, MSG_THINK);
+	else
+		printf("%ld Philosopher %i %s\n", current, id, MSG_DIE);
+	pthread_mutex_unlock(&philo->print_mtx);
+}
+
 int	check_dinner_status(t_main *bag)
 {
 	int	value;
@@ -77,9 +99,15 @@ int	get_philo_state(t_philo *philo)
 
 int	loop_helper(t_philo *philo)
 {
-	if (!check_dinner_status(philo->bag) || get_philo_state(philo) == DIE)
+	if (check_dinner_status(philo->bag) || get_philo_state(philo) == DIE)
 		return (0);
 	return (1);
+}
+
+void	philo_sleep(t_philo *philo)
+{
+	set_philo_state(philo, SLEEP);
+	ft_usleep(philo->time_to_sleep);
 }
 
 static void	*philo_routine(void *arg)
@@ -89,11 +117,13 @@ static void	*philo_routine(void *arg)
 	philo = (t_philo*)arg;
 	while (loop_helper(philo))
 	{
-		ft_usleep(800);
-		printf("hello from thread: %i\n", philo->id);
-		//eat()
-		//sleep()
-		//think()
+		print_philo_status(philo);
+		//ft_usleep(500);
+		//eat(philo)
+		//think(philo)
+		philo_sleep(philo);
+		//sleep(philo)
+		//	just put thread to sleep for bag->arr[3] ms
 	}
 	//3- criar os philos TO DO
 	//	criar as threads
@@ -127,8 +157,13 @@ void	start_dinner(t_main *bag)
 	if (!check_if_can_start(bag))
 		return ;
 	aux = bag->head;
+	bag->start_timestamp = get_time();
 	i = 0;
+	//----------------------------------------------------
+	//------- Think the arbitrator routine is ready ------
+	//----------------------------------------------------
 	pthread_create(&arb, NULL, arbitrator_routine, (void *)bag);
+
 
 	while (i < bag->arr[0])
 	{

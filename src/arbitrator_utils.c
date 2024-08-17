@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:28:36 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:48:18 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/17 13:26:16 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,20 @@ int	is_philo_dead(t_philo *philo, int time)
 	int		value;
 
 	current = get_time();
+	value = -1;
+	(void)time;
 	pthread_mutex_lock(&philo->last_meal_mtx);
-	if ((current - philo->last_meal_time + 10) >= time)
-		value = 1;
-	else
-		value = 0;
+	if (philo->last_meal_time != 0)
+	{
+		if (((current - philo->last_meal_time) + 10) >= philo->time_to_die)
+			value = 1;
+		else
+			value = 0;
+	}
 	pthread_mutex_unlock(&philo->last_meal_mtx);
-	if (value)
+	if (value == 1)
 		set_philo_state(philo, DIE);
+	//printf("return %i\n", value);
 	return (value);
 }
 

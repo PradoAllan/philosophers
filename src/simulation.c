@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/15 19:46:28 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/17 13:22:57 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 static void	*arbitrator_routine(void *arg)
 {
-	return (NULL);
+	//return (NULL);
 	t_main	*bag;
 	t_philo	*aux;
 	int		n_eat;
@@ -35,13 +35,16 @@ static void	*arbitrator_routine(void *arg)
 		n_eat = bag->arr[4];
 	else
 		n_eat = -1;
-	ft_usleep(5000);
+	ft_usleep(200);
 	while (42)
 	{
-		if (is_philo_dead(aux, bag->arr[1]))
+		if (is_philo_dead(aux, bag->arr[1]) == 1)
 		{
 			// mudar variavel end_dinner...
 			stop_dinner(bag);
+			printf("BREAK\n");
+			print_philo_status(aux);
+			printf("BREAK\n");
 			break ;
 		}
 		if (all_philos_full(bag, n_eat))
@@ -111,8 +114,12 @@ int	loop_helper(t_philo *philo)
 
 int	philo_sleep(t_philo *philo)
 {
-	if (!loop_helper(philo))
+	if (check_dinner_status(philo->bag))
+	{
+		//set_philo_state(philo, SLEEP);
+		//print_philo_status(philo);
 		return (0);
+	}
 	set_philo_state(philo, SLEEP);
 	print_philo_status(philo);
 	ft_usleep(philo->time_to_sleep);
@@ -168,9 +175,10 @@ int	philo_eat(t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (!is_philo_dead(philo, philo->time_to_die) || i != 2)
+	while (get_philo_state(philo) != DIE && i != 2)
 	{
-
+		if (check_dinner_status(philo->bag))
+			break ;
 		if (i == 0)
 			i += philo_take_fork(philo, 1);
 		else if (i == 1)
@@ -181,8 +189,8 @@ int	philo_eat(t_philo *philo)
 		set_philo_state(philo, EAT);
 		print_philo_status(philo);
 		increment_meals_counter(philo);
-		set_last_meal_time(philo);
 		ft_usleep(philo->time_to_eat);
+		set_last_meal_time(philo);
 		return (1);
 	}
 	return (0);
@@ -196,6 +204,7 @@ void	stop_eating(t_philo *philo)
 	pthread_mutex_lock(&philo->left_fork->fork);
 	philo->left_fork->fork_status = 1;
 	pthread_mutex_unlock(&philo->left_fork->fork);
+	set_philo_state(philo, SLEEP);
 }
 
 static void	*philo_routine(void *arg)
@@ -205,7 +214,7 @@ static void	*philo_routine(void *arg)
 	philo = (t_philo*)arg;
 	if (philo->id % 2 == 0)
 		ft_usleep(100);
-	set_last_meal_time(philo);
+	//set_last_meal_time(philo);
 	while (loop_helper(philo))
 	{
 		print_philo_status(philo);
@@ -222,6 +231,7 @@ static void	*philo_routine(void *arg)
 		//sleep(philo)
 		//	just put thread to sleep for bag->arr[3] ms
 	}
+	//print_philo_status(philo);
 	//3- criar os philos TO DO
 	//	criar as threads
 	//4- criar a rotina dos philos TO DO

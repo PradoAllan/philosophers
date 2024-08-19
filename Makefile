@@ -19,7 +19,8 @@ SOURCES = src/main.c \
 	  src/philo_utils.c \
 	  src/getters.c \
 	  src/setters.c \
-	  src/philo_utils2.c
+	  src/philo_utils2.c \
+	  src/mutex_dealer.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

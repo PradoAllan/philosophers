@@ -6,14 +6,9 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/15 19:42:48 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:55:16 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-// 1 argumento => numero de filosofos e de garfos.
-// 2 argumento => tempo para morrer (em ms)
-// 3 argumento => tempo para comer (em ms)
-// 4 argumento => tempo para dormir (em ms)
-// 5 argumento => numero de vezes que um filosofo deve comer (opcional)
 
 #include "../libs/philo.h"
 
@@ -25,13 +20,6 @@ void	print_philos(t_main *bag)
 	while (aux)
 	{
 		printf("----- Philos -----\n");
-		/*
-		 * para ver se a lista duplamente encadeada circular deu certo
-		printf("actual: %p\n", aux);
-		printf("prev: %p\n", aux->prev);
-		printf("next: %p\n", aux->next);
-		printf("value: %i\n", aux->id);
-		*/
 		printf("philo id: %i\n", aux->id);
 		printf("left fork: %i\n", aux->left_fork->fork_id);
 		printf("right fork: %i\n", aux->right_fork->fork_id);
@@ -83,7 +71,6 @@ void	create_list(t_main *bag)
 	i = 1;
 	new = NULL;
 	aux = NULL;
-	printf("teste %i\n", bag->arr[0]);
 	while (i <= bag->arr[0])
 	{
 		new = create_philo(i, bag->arr, bag);
@@ -96,13 +83,6 @@ void	create_list(t_main *bag)
 				aux = aux->next;
 			aux->next = new;
 			new->prev = aux;
-			/*
-			if (i == bag->arr[0])
-			{
-				new->next = bag->head;
-				bag->head->prev = new;
-			}
-			*/
 		}
 		i++;
 	}
@@ -111,8 +91,6 @@ void	create_list(t_main *bag)
 	bag->tail = new;
 }
 
-// Func to get the forks is called when the philo needs to eat...
-// ONLY THEN!!!
 void	assign_forks(t_main *bag)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:39:32 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:53:54 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,10 @@ int	philo_eat(t_philo *philo);
 /*----- Free functions -----*/
 void	free_philo(t_philo *philo);
 void	free_list(t_main *bag);
+
+/*----- Mutex functions -----*/
+void	init_mutexes(t_main *bag);
+void	destroy_mutexes(t_main *bag);
 
 /*----- Utils -----*/
 void	ft_putstr_fd(char *s, int fd);

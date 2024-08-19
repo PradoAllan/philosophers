@@ -6,26 +6,11 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:28:36 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:42:06 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:54:18 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
-//--- INSTRUCOES ---
-// 1 argumento => numero de filosofos e de garfos.
-// 2 argumento => tempo para morrer (em ms)
-// 3 argumento => tempo para comer (em ms)
-// 4 argumento => tempo para dormir (em ms)
-// 5 argumento => numero de vezes que um filosofo deve comer (opcional)
-
-/*
-void	set_philo_state(t_philo *philo, int new_state)
-{
-	pthread_mutex_lock(&philo->state_mtx);
-	philo->state = new_state;
-	pthread_mutex_unlock(&philo->state_mtx);
-}
-*/
 
 int	is_philo_dead(t_philo *philo, int time)
 {
@@ -46,7 +31,6 @@ int	is_philo_dead(t_philo *philo, int time)
 	pthread_mutex_unlock(&philo->last_meal_mtx);
 	if (value == 1)
 		set_philo_state(philo, DIE);
-	//printf("return %i\n", value);
 	return (value);
 }
 

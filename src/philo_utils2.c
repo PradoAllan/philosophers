@@ -6,11 +6,18 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:46:25 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:47:33 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/19 17:29:44 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
+
+void	set_last_meal_time_to_zero(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->last_meal_mtx);
+	philo->last_meal_time = 0;
+	pthread_mutex_unlock(&philo->last_meal_mtx);
+}
 
 int	philo_eat(t_philo *philo)
 {
@@ -31,6 +38,7 @@ int	philo_eat(t_philo *philo)
 		set_philo_state(philo, EAT);
 		print_philo_status(philo);
 		increment_meals_counter(philo);
+		set_last_meal_time_to_zero(philo);
 		ft_usleep(philo->time_to_eat);
 		set_last_meal_time(philo);
 		return (1);

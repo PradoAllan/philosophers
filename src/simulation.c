@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/17 13:22:57 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:35:15 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	*arbitrator_routine(void *arg)
 	return (NULL);
 }
 
+/*
 void	print_philo_status(t_philo *philo)
 {
 	long	current;
@@ -206,6 +207,7 @@ void	stop_eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->left_fork->fork);
 	set_philo_state(philo, SLEEP);
 }
+*/
 
 static void	*philo_routine(void *arg)
 {

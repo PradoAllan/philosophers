@@ -15,7 +15,11 @@ SOURCES = src/main.c \
 	  src/free_functions.c \
 	  src/simulation.c \
 	  src/arbitrator_utils.c \
-	  src/time_funcs.c
+	  src/time_funcs.c \
+	  src/philo_utils.c \
+	  src/getters.c \
+	  src/setters.c \
+	  src/philo_utils2.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

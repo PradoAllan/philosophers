@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/15 19:41:08 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:39:32 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,28 +108,35 @@ void		assign_forks(t_main *bag);
 void	start_dinner(t_main *bag);
 
 /*----- Arbitrator -----*/
+void	stop_dinner(t_main *bag);
 int	is_philo_dead(t_philo *philo, int time);
 int	is_philo_full(t_philo *philo, int n_eat);
 int	all_philos_full(t_main *bag, int n_eat);
-void	stop_dinner(t_main *bag);
 
 /*----- Philo -----*/
 void	set_philo_state(t_philo *philo, int new_state);
+void	stop_eating(t_philo *philo);
+void	print_philo_status(t_philo *philo);
+void	increment_meals_counter(t_philo *philo);
+void	set_last_meal_time(t_philo *philo);
 int	get_philo_state(t_philo *philo);
-
+int	check_dinner_status(t_main *bag);
+int	loop_helper(t_philo *philo);
+int	philo_sleep(t_philo *philo);
+int	philo_take_fork(t_philo *philo, int which);
+int	philo_eat(t_philo *philo);
 
 /*----- Free functions -----*/
 void	free_philo(t_philo *philo);
 void	free_list(t_main *bag);
 
 /*----- Utils -----*/
-long	ft_atol(const char *nptr);
-long	get_time(void);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_puterror(int error);
 void	start_forks(t_main *bag); // mutex init
 void	finish_forks(t_main *bag); // mutex destroy
 void	ft_usleep(long ms);
-void	print_philo_status(t_philo *philo);
+long	get_time(void);
+long	ft_atol(const char *nptr);
 
 #endif

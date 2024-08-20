@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:57:13 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/20 18:36:06 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	*arbitrator_routine(void *arg)
 	ft_usleep(200);
 	while (42)
 	{
+		//if (get_philo_state(aux) != EAT && is_philo_dead(aux, bag->arr[1]) == 1)
 		if (is_philo_dead(aux, bag->arr[1]) == 1)
 		{
 			// mudar variavel end_dinner...

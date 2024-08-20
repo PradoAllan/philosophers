@@ -6,15 +6,11 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:58:43 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/20 18:01:10 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
-
-//-----------------------------------------------------------------
-//------------------- A partir daqui nao excluir nada -------------
-//-----------------------------------------------------------------
 
 static void	populate_bag(t_main *bag, int ac)
 {
@@ -35,21 +31,11 @@ int	main(int ac, char **av)
 	populate_bag(&bag, ac);
 	if (!validate_input(ac, av, &bag))
 		return (0);
-	printf("OK!\n");
 	start_forks(&bag);
 	create_list(&bag);
-	assign_forks(&bag); // DONT NEED THIS FUNC. Philos only get forks when need to eat.
-
-	//------------------------------
-	//--- starting the miutexes-----
-	//------------------------------
+	assign_forks(&bag);
 	init_mutexes(&bag);
-
-	//------------------------------
-	//------- starting dinner ------
-	//------------------------------
 	start_dinner(&bag);
-
 	finish_forks(&bag);
 	destroy_mutexes(&bag);
 	free_list(&bag);

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:28:36 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:54:18 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/20 18:14:41 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	is_philo_dead(t_philo *philo, int time)
 	pthread_mutex_lock(&philo->last_meal_mtx);
 	if (philo->last_meal_time != 0)
 	{
+		//if (get_philo_state(philo) == EAT) dando errado???
+		//	value = 0;
 		if (((current - philo->last_meal_time) + 10) >= philo->time_to_die)
 			value = 1;
 		else

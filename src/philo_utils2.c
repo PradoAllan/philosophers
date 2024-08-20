@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:46:25 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 17:29:44 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/20 18:17:06 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int	philo_eat(t_philo *philo)
 		set_philo_state(philo, EAT);
 		print_philo_status(philo);
 		increment_meals_counter(philo);
-		set_last_meal_time_to_zero(philo);
+		//set_last_meal_time_to_zero(philo);
+		// melhor verificar o state do philo no arbitrator.
+		//set_last_meal_time(philo);
 		ft_usleep(philo->time_to_eat);
 		set_last_meal_time(philo);
 		return (1);

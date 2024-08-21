@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:53:54 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:16:01 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ typedef struct		s_philo
 	int		times_eaten;
 	int		meals_counter;
 	long		last_meal_time;
+	long		dying_at;
 	t_fork		*left_fork;
 	t_fork		*right_fork;
 	t_main		*bag;
+	pthread_mutex_t	dying_mtx;
 	pthread_mutex_t	state_mtx;
 	pthread_mutex_t	meal_mtx;
 	pthread_mutex_t	last_meal_mtx;

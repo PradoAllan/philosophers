@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:46:25 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/20 18:17:06 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:06:52 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	set_last_meal_time_to_zero(t_philo *philo)
 	pthread_mutex_unlock(&philo->last_meal_mtx);
 }
 
+/*
 int	philo_eat(t_philo *philo)
 {
 	int	i;
@@ -87,3 +88,4 @@ int	philo_take_fork(t_philo *philo, int which)
 	pthread_mutex_unlock(&philo->left_fork->fork);
 	return (0);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 08:39:24 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:55:16 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:12:59 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	populate_philo(t_philo **node)
 	(*node)->state = THINK;
 	(*node)->meals_counter = 0;
 	(*node)->last_meal_time = 0;
+	(*node)->dying_at = 0;
 	(*node)->left_fork = NULL;
 	(*node)->right_fork = NULL;
 	(*node)->bag = NULL;

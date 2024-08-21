@@ -6,35 +6,11 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:28:36 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/20 18:14:41 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:55:25 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/philo.h"
-
-int	is_philo_dead(t_philo *philo, int time)
-{
-	long	current;
-	int		value;
-
-	current = get_time();
-	value = -1;
-	(void)time;
-	pthread_mutex_lock(&philo->last_meal_mtx);
-	if (philo->last_meal_time != 0)
-	{
-		//if (get_philo_state(philo) == EAT) dando errado???
-		//	value = 0;
-		if (((current - philo->last_meal_time) + 10) >= philo->time_to_die)
-			value = 1;
-		else
-			value = 0;
-	}
-	pthread_mutex_unlock(&philo->last_meal_mtx);
-	if (value == 1)
-		set_philo_state(philo, DIE);
-	return (value);
-}
 
 int	is_philo_full(t_philo *philo, int n_eat)
 {

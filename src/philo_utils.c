@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:34:02 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/19 14:55:53 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:58:52 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	check_dinner_status(t_main *bag)
 
 int	loop_helper(t_philo *philo)
 {
-	if (check_dinner_status(philo->bag) 
-			|| get_philo_state(philo) == DIE
-			|| is_philo_full(philo, philo->times_eaten))
+	if (check_dinner_status(philo->bag)
+		|| get_philo_state(philo) == DIE
+		|| is_philo_full(philo, philo->times_eaten))
 		return (0);
 	return (1);
 }
@@ -60,11 +60,7 @@ int	loop_helper(t_philo *philo)
 int	philo_sleep(t_philo *philo)
 {
 	if (check_dinner_status(philo->bag))
-	{
-		//set_philo_state(philo, SLEEP);
-		//print_philo_status(philo);
 		return (0);
-	}
 	set_philo_state(philo, SLEEP);
 	print_philo_status(philo);
 	ft_usleep(philo->time_to_sleep);

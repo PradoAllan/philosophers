@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:41:58 by aprado            #+#    #+#             */
-/*   Updated: 2024/07/25 09:42:52 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:59:28 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	check_param(char *s)
 
 int	validate_input(int ac, char **av, t_main *bag)
 {
-	int	i;
-	long		nbr;
+	long	nbr;
+	int		i;
 
 	i = 0;
 	if (ac < 5)

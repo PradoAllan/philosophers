@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:37:46 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:41:29 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:57:18 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	get_time(void)
 {
 	struct timeval	time;
-	long		ms;
+	long			ms;
 
 	gettimeofday(&time, NULL);
 	ms = time.tv_sec * 1000;

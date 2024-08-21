@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/21 10:56:52 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/21 12:28:19 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ static int	check_if_can_start(t_main *bag)
 {
 	if (!bag)
 		return (0);
-	if (bag->arr[0] == 1)
-		return (ft_puterror(-10), 0);
 	else if (bag->arr_size == 5 && bag->arr[4] == 0)
 		return (ft_puterror(-10), 0);
 	return (1);

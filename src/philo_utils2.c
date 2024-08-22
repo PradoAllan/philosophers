@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:46:25 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/21 10:53:24 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/22 13:30:47 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	philo_eat(t_philo *philo)
 		set_philo_state(philo, EAT);
 		print_philo_status(philo);
 		increment_meals_counter(philo);
-		philo->dying_at = get_time() + philo->time_to_die;
+		set_dying_at(philo);
+		//philo->dying_at = get_time() + philo->time_to_die;
 		ft_usleep(philo->time_to_eat);
 		set_last_meal_time(philo);
 		return (1);

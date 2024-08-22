@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/21 11:04:33 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/22 13:32:34 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int			all_philos_full(t_main *bag, int n_eat);
 
 /*----- Philo -----*/
 void		set_philo_state(t_philo *philo, int new_state);
+void		set_dying_at(t_philo *philo);
 void		stop_eating(t_philo *philo);
 void		print_philo_status(t_philo *philo);
 void		increment_meals_counter(t_philo *philo);
@@ -127,6 +128,7 @@ int			loop_helper(t_philo *philo);
 int			philo_sleep(t_philo *philo);
 int			philo_take_fork(t_philo *philo, int which);
 int			philo_eat(t_philo *philo);
+long		get_dying_at(t_philo *philo);
 
 /*----- Free functions -----*/
 void		free_philo(t_philo *philo);

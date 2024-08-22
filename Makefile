@@ -71,4 +71,10 @@ _progress:
 	printf "\n\033[0;32m COMPILATION COMPLETE!\033[0m\n"; \
 	tput cnorm
 
+fsanitize:	FLAGS += -fsanitize=thread
+fsanitize:	fclean ${NAME}
+
+debug:	FLAGS += -ggdb3
+debug:	fclean ${NAME}
+
 .PHONY: all clean fclean re

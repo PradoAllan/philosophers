@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:06:50 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/22 13:32:50 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/22 15:18:56 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	set_dying_at(philo);
-	//philo->dying_at = get_time() + philo->time_to_die;
 	if (philo->id % 2 == 0)
 		ft_usleep(100);
 	while (loop_helper(philo))

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:58:03 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/22 15:13:18 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/22 15:19:14 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	init_mutexes(t_main *bag)
 		pthread_mutex_init(&aux->meal_mtx, NULL);
 		pthread_mutex_init(&aux->last_meal_mtx, NULL);
 		pthread_mutex_init(&aux->dying_mtx, NULL);
-
 		i++;
 		aux = aux->next;
 	}

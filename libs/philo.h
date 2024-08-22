@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:42:12 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/22 13:32:34 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/22 15:12:45 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_philo
 	pthread_mutex_t		state_mtx;
 	pthread_mutex_t		meal_mtx;
 	pthread_mutex_t		last_meal_mtx;
-	pthread_mutex_t		print_mtx;
 	struct s_philo		*next;
 	struct s_philo		*prev;
 }						t_philo;
@@ -73,6 +72,7 @@ struct s_main
 	int					end_dinner;
 	int					all_ready;
 	long				start_timestamp;
+	pthread_mutex_t		print_mtx;
 	pthread_mutex_t		end_mutex;
 	t_fork				*forks;
 	t_philo				*head;

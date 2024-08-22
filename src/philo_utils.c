@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:34:02 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/21 10:58:52 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/22 15:13:53 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_philo_status(t_philo *philo)
 	int		id;
 	int		state;
 
-	pthread_mutex_lock(&philo->print_mtx);
+	pthread_mutex_lock(&philo->bag->print_mtx);
 	current = get_time() - philo->bag->start_timestamp;
 	id = philo->id;
 	state = get_philo_state(philo);
@@ -32,7 +32,7 @@ void	print_philo_status(t_philo *philo)
 		printf("%ld %i %s\n", current, id, MSG_FORK);
 	else
 		printf("%ld %i %s\n", current, id, MSG_DIE);
-	pthread_mutex_unlock(&philo->print_mtx);
+	pthread_mutex_unlock(&philo->bag->print_mtx);
 }
 
 int	check_dinner_status(t_main *bag)

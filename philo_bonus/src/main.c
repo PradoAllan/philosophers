@@ -5,41 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 18:38:48 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/20 18:01:10 by aprado           ###   ########.fr       */
+/*   Created: 2024/08/23 11:50:18 by aprado            #+#    #+#             */
+/*   Updated: 2024/08/23 12:17:33 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/philo.h"
+#include "../libs/philo_bonus.h"
 
-static void	populate_bag(t_main *bag, int ac)
+void	test(t_main *bag)
 {
-	bag->arr = NULL;
-	bag->arr_size = ac - 1;
-	bag->forks = NULL;
-	bag->end_dinner = 0;
-	bag->start_timestamp = 0;
-	bag->all_ready = 0;
-	bag->head = NULL;
-	bag->tail = NULL;
+	int	i = 0;
+
+	printf("Arr_size: %i\n", bag->arr_size);
+	while (i < bag->arr_size)
+	{
+		printf("values[%i] -> %i\n", i, bag->arr[i]);
+		i++;
+	}
 }
 
 int	main(int ac, char **av)
 {
 	t_main	bag;
 
-	populate_bag(&bag, ac);
+	bag = (t_main){0};
 	if (!validate_input(ac, av, &bag))
 		return (0);
-	start_forks(&bag);
-	create_list(&bag);
-	assign_forks(&bag);
-	init_mutexes(&bag);
-	start_dinner(&bag);
-	finish_forks(&bag);
-	destroy_mutexes(&bag);
-	free_list(&bag);
-	free(bag.arr);
-	free(bag.forks);
+	test(&bag);
 	return (1);
 }

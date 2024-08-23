@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:43:59 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/23 12:11:43 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/23 14:17:09 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define MSG_THINK "is thinking"
 # define MSG_DIE "died"
 
+typedef struct s_main	t_main;
+
 enum	e_errors
 {
 	NO_PARAMS = -1,
@@ -34,15 +36,47 @@ enum	e_errors
 	WRONG_PARAMS = -3
 };
 
-typedef struct s_main
+enum	e_state
+{
+	EAT = 1,
+	SLEEP = 2,
+	THINK = 3,
+	FORK = 4,
+	DIE = 5
+};
+
+typedef struct s_philo
+{
+	int					id;
+	int					state;
+	long				time_to_die;
+	long				time_to_sleep;
+	long				time_to_eat;
+	int					times_eaten;
+	int					meals_counter;
+	long				last_meal_time;
+	long				dying_at;
+	t_main				*bag;
+	struct s_philo		*next;
+	struct s_philo		*prev;
+}						t_philo;
+
+struct s_main
 {
 	int	*arr;
 	int	arr_size;
-}		t_main;
+	t_philo	*head;
+	t_philo	*tail;
+};
 
 /*----- Validation functions -----*/
 int	check_param(char *s);
 int	validate_input(int ac, char **av, t_main *bag);
+
+/*----- linked list functions -----*/
+void	print_philos(t_main *bag);
+t_philo	*create_philo(int id, int *arr, t_main *bag);
+void	create_list(t_main *bag);
 
 /*----- Utils -----*/
 void	ft_putstr_fd(char *s, int fd);

@@ -6,7 +6,7 @@
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:43:59 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/23 14:17:09 by aprado           ###   ########.fr       */
+/*   Updated: 2024/08/23 14:27:51 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,9 @@ void	create_list(t_main *bag);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_puterror(int error);
 long	ft_atol(const char *nptr);
+
+/*----- Free Functions -----*/
+void	free_philo(t_philo *philo);
+void	free_list(t_main *bag);
 
 #endif

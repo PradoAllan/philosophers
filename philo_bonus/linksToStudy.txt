@@ -1,0 +1,25 @@
+####--- Alguns links que podem, ou nao, me ajudar no projeto. ---####
+
+1-) Playlist com alguns videos sobre alguns conceitos do projeto:
+	https://www.youtube.com/watch?v=kCGaRdArSnA&list=PLGU1kcPKHMKi41Py2kqxdvqYE3M9VhCHe
+
+2-) Video sobre Deadlocks em C:
+	https://www.youtube.com/watch?v=LjWug2tvSBU&list=PLfqABt5AS4FmErobw8YyTwXDUE5nPH5lH
+
+3-) Como usar gettimeofday() func:
+	https://www.youtube.com/watch?v=cunJcNgtxMk
+
+4-) Video sobre Race Conditions:
+	https://www.youtube.com/watch?v=FY9livorrJI&list=PLfqABt5AS4FmErobw8YyTwXDUE5nPH5lH
+
+5-) Medium que me auxiliou na rotina dos philos e do arbitrator:
+	https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
+#####################################################################
+
+-> Estudar sobre processos e threads!
+	- Quais sao as diferencas entre eles?
+	- Como "usar/relacionar" eles no projeto?
+
+-> Estudar sobre mutex!
+	- O que e?
+	- Como usar no projeto?

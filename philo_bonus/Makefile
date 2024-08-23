@@ -1,4 +1,4 @@
-NAME = philo
+NAME = philo_bonus
 
 CC = cc
 
@@ -9,18 +9,8 @@ FLAGS = -Wall -Wextra -Werror
 OUT = -o $(NAME)
 
 SOURCES = src/main.c \
-	  src/validate_input.c \
-	  src/utils.c \
-	  src/linked_list.c \
-	  src/free_functions.c \
-	  src/simulation.c \
-	  src/arbitrator_utils.c \
-	  src/time_funcs.c \
-	  src/philo_utils.c \
-	  src/getters.c \
-	  src/setters.c \
-	  src/philo_utils2.c \
-	  src/mutex_dealer.c
+	  src/validations.c \
+	  src/utils.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

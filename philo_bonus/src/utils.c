@@ -5,46 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aprado <aprado@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 15:47:56 by aprado            #+#    #+#             */
-/*   Updated: 2024/08/14 17:38:26 by aprado           ###   ########.fr       */
+/*   Created: 2024/08/23 12:08:30 by aprado            #+#    #+#             */
+/*   Updated: 2024/08/23 12:09:22 by aprado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/philo.h"
-
-void	finish_forks(t_main *bag)
-{
-	int	i;
-
-	i = 0;
-	while (i < bag->arr[0])
-	{
-		pthread_mutex_destroy(&bag->forks[i].fork);
-		i++;
-	}
-}
-
-void	start_forks(t_main *bag)
-{
-	int	forks;
-	int	i;
-
-	if (!bag)
-		return ;
-	forks = 1;
-	i = 0;
-	bag->forks = malloc(sizeof(t_fork) * (bag->arr[0]));
-	if (!bag->forks)
-		return ;
-	while (i < bag->arr[0])
-	{
-		pthread_mutex_init(&bag->forks[i].fork, NULL);
-		bag->forks[i].fork_id = forks;
-		bag->forks[i].fork_status = 1;
-		forks++;
-		i++;
-	}
-}
+#include "../libs/philo_bonus.h"
 
 long	ft_atol(const char *nptr)
 {
@@ -88,16 +54,19 @@ void	ft_putstr_fd(char *s, int fd)
 void	ft_puterror(int error)
 {
 	if (error == NO_PARAMS)
-		ft_putstr_fd("Philo: Missing parameters.\n", 2);
+		ft_putstr_fd("Philo bonus: Missing parameters.\n", 2);
 	else if (error == BAD_PARAMS)
 	{
-		ft_putstr_fd("Philo: Not more than 5 ", 2);
+		ft_putstr_fd("Philo bonus: Not more than 5 ", 2);
 		ft_putstr_fd("and less than 4 parameters.\n", 2);
 	}
 	else if (error == WRONG_PARAMS)
-		ft_putstr_fd("Philo: Must be a positive integer number.\n", 2);
+	{
+		ft_putstr_fd("Philo bonus: Must be ", 2);
+		ft_putstr_fd("a positive integer number.\n", 2);
+	}
 	else
-		ft_putstr_fd("Philo: Error.\n", 2);
-	ft_putstr_fd("Philo: Try inputs like this: ", 2);
+		ft_putstr_fd("Philo bonus: Error.\n", 2);
+	ft_putstr_fd("Philo bonus: Try inputs like this: ", 2);
 	ft_putstr_fd("./philo 80 200 300 400 5\n", 2);
 }

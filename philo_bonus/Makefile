@@ -10,7 +10,8 @@ OUT = -o $(NAME)
 
 SOURCES = src/main.c \
 	  src/validations.c \
-	  src/utils.c
+	  src/utils.c \
+	  src/linked_list.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

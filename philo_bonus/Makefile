@@ -11,7 +11,8 @@ OUT = -o $(NAME)
 SOURCES = src/main.c \
 	  src/validations.c \
 	  src/utils.c \
-	  src/linked_list.c
+	  src/linked_list.c \
+	  src/free_stuff.c
 
 OBJECTS = ${SOURCES:.c=.o}
 
